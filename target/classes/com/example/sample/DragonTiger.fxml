@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" style="-fx-background-color: #680034;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sample.DragonTigerControler">
+   <children>
+      <Label layoutX="86.0" layoutY="378.0" text="的" textFill="#ebebeb">
+         <font>
+            <Font size="200.0" />
+         </font>
+      </Label>
+      <Label layoutX="995.0" layoutY="378.0" text="虎" textFill="#ebebeb">
+         <font>
+            <Font size="200.0" />
+         </font>
+      </Label>
+      <Label layoutX="538.0" layoutY="378.0" text="画" textFill="#ebebeb">
+         <font>
+            <Font size="200.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="TigerCard" layoutX="329.0" layoutY="106.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
+         <children>
+            <ImageView fx:id="TigerImageView" fitHeight="231.0" fitWidth="172.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
+         </children></AnchorPane>
+      <Button fx:id="TigerBet" layoutX="113.0" layoutY="635.0" mnemonicParsing="false" style="-fx-background-color: #ab821a;" text="TIGER">
+         <font>
+            <Font name="Bauhaus 93" size="38.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="DragonBet" layoutX="996.0" layoutY="635.0" mnemonicParsing="false" style="-fx-background-color: #ab821a;" text="DRAGON">
+         <font>
+            <Font name="Bauhaus 93" size="38.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="TieBet" layoutX="588.0" layoutY="635.0" mnemonicParsing="false" style="-fx-background-color: #ab821a;" text="TIE">
+         <font>
+            <Font name="Bauhaus 93" size="38.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="BetField" layoutX="14.0" layoutY="62.0" promptText="Enter your bet:" />
+      <Label fx:id="Balance" layoutX="14.0" layoutY="14.0" text="YOUR BALANCE IS " textFill="#b6ff63">
+         <font>
+            <Font name="Bauhaus 93" size="21.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="TigerCard1" layoutX="841.0" layoutY="106.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
+         <children>
+            <ImageView fx:id="DragonImageView" fitHeight="237.0" fitWidth="165.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
