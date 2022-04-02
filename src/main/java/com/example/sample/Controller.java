@@ -12,12 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Controller {
-
+    User user;
     @FXML
     private ResourceBundle resources;
 
@@ -31,6 +32,9 @@ public class Controller {
     private Button loginSignUpButton;
 
     @FXML
+    private Label message;
+
+    @FXML
     private TextField loginField;
 
     @FXML
@@ -42,47 +46,51 @@ public class Controller {
             String loginText = loginField.getText().trim();
             String loginPassword = passwordField.getText().trim();
 
-            if(!loginText.equals("") && !loginPassword.equals("")){
+            if (!loginText.equals("") && !loginPassword.equals("")) {
                 loginUser(loginText, loginPassword);
-            }else {System.out.println("Login and Password is empty");}
+            } else {
+                System.out.println("Login and Password is empty");
+            }
         });
 
-            loginSignUpButton.setOnAction(event ->{
-                openNewScene("signUp.fxml");
-
-            });
-
+        loginSignUpButton.setOnAction(event -> {
+            openNewScene("signUp.fxml");
+        });
     }
-
-
 
     private void loginUser(String loginText, String loginPassword) {
         DataBaseHandler dbHandler = new DataBaseHandler();
-        User user = new User();
-        user.setUserName(loginText);
-        user.setPassword(loginPassword);
-        ResultSet result = dbHandler.getUser(user);
+        user = dbHandler.getUser(loginText);
 
-        int counter = 0;
-
-        try {
-            while(result.next()) {
-                counter ++;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        if(counter >= 1) {
-
-            openNewScene("app.fxml");
-
-        }else {
+        if (user != null && user.getPassword().equals(loginPassword)) {
+            openNewScenelobby("app.fxml");
+        } else {
+            this.message.setText("Incorect login or password");
             Shake userLoginAnimation = new Shake(loginField);
             Shake userPasswordAnimation = new Shake(passwordField);
             userLoginAnimation.playAnimation();
             userPasswordAnimation.playAnimation();
+            //incorect password dialog window
         }
+    }
+
+    public void openNewScenelobby(String window) {
+        loginSignUpButton.getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            SignUpController signUpController = new SignUpController();
+            HomeController homeController = new HomeController(user);
+            loader.setController(homeController);
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
     }
 
     public void openNewScene(String window) {
@@ -90,19 +98,18 @@ public class Controller {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(window));
-
-        try{
+        try {
+            SignUpController signUpController = new SignUpController();
+            HomeController homeController = new HomeController(user);
+            loader.setController(signUpController);
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.showAndWait();
-
-
     }
 
 }

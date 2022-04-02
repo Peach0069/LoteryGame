@@ -46,7 +46,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Button fx:id="loginLoginButton" layoutX="282.0" layoutY="205.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: #ab821a; -fx-background-radius: 12;" text="Log In">
+            <Button fx:id="loginLoginButton" layoutX="282.0" layoutY="220.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="136.0" style="-fx-background-color: #ab821a; -fx-background-radius: 12;" text="Log In">
                <font>
                   <Font name="Book Antiqua" size="22.0" />
                </font>
@@ -54,6 +54,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="message" alignment="CENTER" layoutX="222.0" layoutY="183.0" prefHeight="30.0" prefWidth="251.0" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <Label layoutX="236.0" layoutY="14.0" text="LoteryGame">
          <font>

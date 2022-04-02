@@ -8,18 +8,20 @@ public class User {
     private String password;
     private String location;
     private String gender;
+    private int balance;
 
-    public User(String firstName, String lastName, String userName, String password, String location, String gender) {
+    public User(String firstName, String lastName, String userName, String password, String location, String gender, int balance) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
         this.location = location;
         this.gender = gender;
+        this.balance = balance;
+
     }
 
     public User() {
-
     }
 
     public String getFirstName() {
@@ -68,5 +70,12 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 }

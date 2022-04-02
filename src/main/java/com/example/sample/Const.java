@@ -1,9 +1,8 @@
 package com.example.sample;
 
-public class Const extends Controller{
+public class Const extends Controller {
     private Controller Controller;
     public static final String USER_TABLE = "users";
-
     public static final String USERS_ID = "idusers";
     public static final String USERS_FIRSTNAME = "firstname";
     public static final String USERS_LASTNAME = "lastname";
@@ -11,6 +10,7 @@ public class Const extends Controller{
     public static final String USERS_PASSWORD = "password";
     public static final String USERS_GENDER = "gender";
     public static final String USERS_LOCATION = "location";
+    public static final String USERS_BALANCE = "balance";
 
 
 

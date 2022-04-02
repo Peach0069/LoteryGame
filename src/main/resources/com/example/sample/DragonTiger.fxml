@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" style="-fx-background-color: #680034;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sample.DragonTigerControler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1300.0" style="-fx-background-color: #680034;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="86.0" layoutY="378.0" text="的" textFill="#ebebeb">
          <font>
@@ -53,17 +53,22 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="BetField" layoutX="14.0" layoutY="62.0" promptText="Enter your bet:" />
-      <Label fx:id="Balance" layoutX="14.0" layoutY="14.0" text="YOUR BALANCE IS " textFill="#b6ff63">
-         <font>
-            <Font name="Bauhaus 93" size="21.0" />
-         </font>
-      </Label>
       <AnchorPane fx:id="TigerCard1" layoutX="841.0" layoutY="106.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="DragonImageView" fitHeight="237.0" fitWidth="165.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
+      <Label fx:id="balance" layoutX="501.0" layoutY="225.0" prefHeight="69.0" prefWidth="343.0" textFill="WHITE">
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Label>
+      <TextField fx:id="betField" alignment="CENTER" layoutX="564.0" layoutY="348.0" promptText="Bet Amounth" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Lobby">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />
