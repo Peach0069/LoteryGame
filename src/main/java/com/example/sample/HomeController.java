@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 public class HomeController {
     User user;
 
+    @FXML
+    private Button LogoutButton;
 
     @FXML
     private Label balance;
@@ -30,19 +32,6 @@ public class HomeController {
 
     @FXML
     private Button TigerAndDragonButton;
-
-    @FXML
-    public void logout(ActionEvent event) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setContentText("Are you sure want to logout?");
-        if(alert.showAndWait().get() == ButtonType.OK) {
-            Stage stage = (Stage) pane.getScene().getWindow();
-            stage.close();
-            openNewScene("hello-view.fxml");
-        }
-    }
 
     public HomeController(User user) {
         this.user = user;
@@ -63,6 +52,17 @@ public class HomeController {
             Stage stage = (Stage) pane.getScene().getWindow();
             stage.close();
             openNewSceneLucky("LuckyNumber.fxml");
+        });
+
+        LogoutButton.setOnAction(event ->  {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Logout");
+            alert.setContentText("Are you sure want to logout?");
+            if(alert.showAndWait().get() == ButtonType.OK) {
+                Stage stage = (Stage) pane.getScene().getWindow();
+                stage.close();
+                openNewScene("hello-view.fxml");
+            }
         });
 
     }

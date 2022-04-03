@@ -44,6 +44,13 @@ public class SignUpController {
     @FXML
     private TextField signUpLastName;
 
+    public void alertError(String error, String mes) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(error);
+        alert.setHeaderText(mes);
+        alert.showAndWait().get();
+    }
+
     @FXML
     void initialize() {
 
@@ -71,18 +78,22 @@ public class SignUpController {
         }
         User user = dbHandler.getUser(userName);
         if (firstName.isBlank() || lastName.isBlank() || userName.isBlank() || password.isBlank() ||
-                location.isBlank() || gender.isBlank() || user != null) {
+                location.isBlank() || gender.isBlank()) {
+            alertError("Error", "Complete all fields");
             new Shake(signUpFirstName).playAnimation();
             new Shake(signUpLastName).playAnimation();
             new Shake(loginField).playAnimation();
             new Shake(passwordField).playAnimation();
             new Shake(signUpCountry).playAnimation();
             return false;
-        }  else {
+        } else if (user != null) {
+            alertError("Username", "Username is already registered");
+        } else {
             user = new User(firstName, lastName, userName, password, location, gender, 10000);
             dbHandler.signUpUser(user);
             return true;
         }
+        return false;
     }
 
     public void openNewScene(String window) {

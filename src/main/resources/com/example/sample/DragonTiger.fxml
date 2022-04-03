@@ -25,9 +25,9 @@
             <Font size="200.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="TigerCard" layoutX="329.0" layoutY="106.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
+      <AnchorPane fx:id="TigerCard" layoutX="260.0" layoutY="106.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
          <children>
-            <ImageView fx:id="TigerImageView" fitHeight="231.0" fitWidth="172.0" layoutX="-2.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="TigerImageView" fitHeight="231.0" fitWidth="172.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
          </children></AnchorPane>
       <Button fx:id="TigerBet" layoutX="113.0" layoutY="635.0" mnemonicParsing="false" style="-fx-background-color: #ab821a;" text="TIGER">
          <font>
@@ -53,22 +53,39 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <AnchorPane fx:id="TigerCard1" layoutX="841.0" layoutY="106.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
+      <AnchorPane fx:id="TigerCard1" layoutX="912.0" layoutY="104.0" prefHeight="229.0" prefWidth="155.0" style="-fx-border-color: white; -fx-border-width: 1;">
          <children>
             <ImageView fx:id="DragonImageView" fitHeight="237.0" fitWidth="165.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
-      <Label fx:id="balance" layoutX="501.0" layoutY="225.0" prefHeight="69.0" prefWidth="343.0" textFill="WHITE">
+      <TextField fx:id="betField" alignment="CENTER" layoutX="564.0" layoutY="405.0" promptText="Bet Amounth" />
+      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #bc0460; -fx-background-radius: 10;" text="Lobby">
          <font>
-            <Font size="47.0" />
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <AnchorPane layoutX="1027.0" layoutY="14.0" prefHeight="46.0" prefWidth="259.0" style="-fx-background-color: #ab821a; -fx-background-radius: 24;">
+         <children>
+            <Label fx:id="balance" alignment="CENTER" contentDisplay="TOP" prefHeight="60.0" prefWidth="267.0" textFill="WHITE">
+               <font>
+                  <Font name="Bauhaus 93" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="winnerLabel" alignment="CENTER" layoutX="437.0" layoutY="177.0" prefHeight="127.0" prefWidth="474.0" textFill="#ffc42f">
+         <font>
+            <Font size="45.0" />
          </font>
       </Label>
-      <TextField fx:id="betField" alignment="CENTER" layoutX="564.0" layoutY="348.0" promptText="Bet Amounth" />
-      <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Lobby">
+      <Label fx:id="winnerLose" alignment="CENTER" layoutX="455.0" layoutY="30.0" prefHeight="131.0" prefWidth="439.0" textFill="#e1ff00">
          <font>
-            <Font size="15.0" />
+            <Font size="65.0" />
          </font>
-      </Button>
+      </Label>
    </children>
    <cursor>
       <Cursor fx:constant="DEFAULT" />

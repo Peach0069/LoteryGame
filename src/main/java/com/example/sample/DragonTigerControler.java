@@ -8,13 +8,12 @@ import java.util.Random;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,8 +24,10 @@ import static com.example.sample.Player.*;
 
 
 public class DragonTigerControler {
-
     User user;
+
+    @FXML
+    private Label winnerLabel;
 
     @FXML
     private TextField betField;
@@ -64,8 +65,32 @@ public class DragonTigerControler {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Label winnerLose;
+
     public DragonTigerControler(User user) {
         this.user = user;
+    }
+
+    public void alertError(String error, String mes) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(error);
+        alert.setHeaderText(mes);
+        alert.showAndWait().get();
+    }
+
+    public static boolean isNumeric(String str) throws IllegalArgumentException { //Check if in field is a number
+        boolean isNumber = false;
+        if (str != null && !str.equals("")) {
+            isNumber = true;
+            char chars[] = str.toCharArray();
+            for (int d = 0; d < chars.length; d++) {
+                isNumber &= Character.isDigit(chars[d]);
+                if (!isNumber)
+                    break;
+            }
+        }
+        return isNumber;
     }
 
     @FXML
@@ -86,13 +111,17 @@ public class DragonTigerControler {
     private void justPlay(Player player) {
         String str = (betField.getText());
         if (str.isBlank()) { // check if field is blank
-            System.out.println("error");
+            alertError("Error", "You field is empty");
+        } else if (!isNumeric(str)) {
+            alertError("", "Something goes wrong");
         } else {
             int bet = Integer.parseInt(str);
-            if (bet < user.getBalance()) {
+            if (bet == 0) {
+                alertError("", "You can't bet with this value");
+            } else if (bet <= user.getBalance()) {
                 Randomize(bet, player);
             } else {
-                openNewScene("DialogMessage.fxml");
+                alertError("Insufficient money", "You don't have enough money to do this operation");//don't have enough money
             }
         }
     }
@@ -126,24 +155,33 @@ public class DragonTigerControler {
         DragonImageView.setImage(imageD);
 
         if (yt == yd && xd == xt && player == TIE) {
-            user.setBalance(user.getBalance() + (bet * 50)); //set win
-            System.out.println("It's extra tie x50");
+            this.winnerLose.setText("YOU WIN x15!");
+            user.setBalance(user.getBalance() + (bet * 15)); //set win
         } else if (yt < yd && player == DRAGON) {
+            this.winnerLose.setText("YOU WIN! x2");
             user.setBalance(user.getBalance() + (bet * 2)); //set win
-            System.out.println("Dragon Wins x2");
         } else if (yt == yd && player == TIE) {
-            user.setBalance(user.getBalance() + (bet * 11)); //set win
-            System.out.println("It's tie x11");
+            this.winnerLose.setText("YOU WIN! x6");
+            user.setBalance(user.getBalance() + (bet * 6)); //set win
         } else if (yt > yd && player == TIGER) {
+            this.winnerLose.setText("YOU WIN! x2");
             user.setBalance(user.getBalance() + (bet * 2)); //set win
-            System.out.println("Tiger Wins x2");
         } else {
+            this.winnerLose.setText("YOU LOSE!");
             user.setBalance(user.getBalance() - bet); //set win
-            System.out.println("You lose");
+        } if (yt < yd){
+            this.winnerLabel.setText("DRAGON WINS! x2");
+        } else if (yt > yd){
+            this.winnerLabel.setText("TIGER WINS! x2");
+        } else if (yt == yd){
+            this.winnerLabel.setText("IT'S TIE! x6");
+        } else if (yt == yd && xd == xt) {
+            this.winnerLabel.setText("IT'S EXTRA TIE! x15");
         }
         this.balance.setText(String.valueOf(user.getBalance()));//show balance in game
         saveuser(); //save data
     }
+
 
     private void saveuser() {
         DataBaseHandler dataBaseHandler = new DataBaseHandler();
