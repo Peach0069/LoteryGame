@@ -34,15 +34,27 @@
          </cursor>
       </Button>
       <TextField fx:id="BetField" alignment="CENTER" layoutX="576.0" layoutY="541.0" promptText="Bet Amounth" />
-      <Label fx:id="balance" layoutX="462.0" layoutY="45.0" prefHeight="66.0" prefWidth="377.0" textFill="RED">
+      <Button fx:id="BackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #259e98; -fx-background-radius: 10;" text="Lobby">
          <font>
-            <Font size="45.0" />
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="winnerLabel" alignment="CENTER" layoutX="399.0" layoutY="169.0" prefHeight="81.0" prefWidth="512.0" textFill="WHITE">
+         <font>
+            <Font name="Bauhaus 93" size="70.0" />
          </font>
       </Label>
-      <Button fx:id="BackButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Lobby">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
+      <AnchorPane layoutX="1019.0" layoutY="15.0" prefHeight="46.0" prefWidth="259.0" style="-fx-background-color: #ab821a; -fx-background-radius: 24;">
+         <children>
+            <Label fx:id="balance" alignment="CENTER" layoutX="-2.0" layoutY="-9.0" prefHeight="25.0" prefWidth="278.0" textFill="WHITE">
+               <font>
+                  <Font size="45.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
