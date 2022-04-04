@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 import Animation.Shake;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,10 +45,17 @@ public class SignUpController {
     @FXML
     private TextField signUpLastName;
 
-    public void alertError(String error, String mes) {
+    public static void alertError(String error, String mes) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(error);
         alert.setHeaderText(mes);
+        alert.showAndWait().get();
+    }
+
+    public static void alertSucces(String succes, String mess) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(succes);
+        alert.setHeaderText(mess);
         alert.showAndWait().get();
     }
 
@@ -59,7 +67,6 @@ public class SignUpController {
                 openNewScene("hello-view.fxml");
             }
         });
-
     }
 
     private boolean signUpNewUser() {
@@ -78,7 +85,7 @@ public class SignUpController {
         }
         User user = dbHandler.getUser(userName);
         if (firstName.isBlank() || lastName.isBlank() || userName.isBlank() || password.isBlank() ||
-                location.isBlank() || gender.isBlank()) {
+                location.isBlank() || gender.isBlank() ) {
             alertError("Error", "Complete all fields");
             new Shake(signUpFirstName).playAnimation();
             new Shake(signUpLastName).playAnimation();
@@ -88,7 +95,8 @@ public class SignUpController {
             return false;
         } else if (user != null) {
             alertError("Username", "Username is already registered");
-        } else {
+        } else if (passCheck(password)) {
+            alertSucces("Hi", "Register succesful");
             user = new User(firstName, lastName, userName, password, location, gender, 10000);
             dbHandler.signUpUser(user);
             return true;
@@ -112,4 +120,34 @@ public class SignUpController {
         dialog.setScene(new Scene(root));
         dialog.show();
     }
-}
+
+    static boolean passCheck(String password) {
+        int passwordSpecialDigitCount = 0,
+                passwordLengthCount = 0,
+                passwordLower = 0;
+
+        String specialCharactersString = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
+        for (int i = 0; i < password.length(); i++) {
+            char ch = password.charAt(i);
+            if (specialCharactersString.contains(Character.toString(ch))) {
+                passwordSpecialDigitCount++;
+            } else if (password.length() >= 8) {
+                passwordLengthCount++;
+            }
+        }
+        if (passwordLengthCount < 1) {
+            alertError("Password", "Password required minim 8 characters");
+            return false;
+        } else if (passwordSpecialDigitCount < 1) {
+            alertError("Password", "Password required minim one special character");
+            return false;
+        }
+        return true;
+    }
+
+
+
+    }
+
+
+
