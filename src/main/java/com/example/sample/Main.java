@@ -14,6 +14,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 700, 400);
         stage.setTitle("Lotery App");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -117,6 +117,7 @@ public class SignUpController {
         }
         Parent root = loader.getRoot();
         Stage dialog = new Stage();
+        dialog.setResizable(false);
         dialog.setScene(new Scene(root));
         dialog.show();
     }

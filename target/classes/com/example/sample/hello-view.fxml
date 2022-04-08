@@ -15,14 +15,14 @@
    <children>
       <AnchorPane layoutY="88.0" prefHeight="312.0" prefWidth="700.0" style="-fx-background-color: #141414;">
          <children>
-            <TextField fx:id="loginField" layoutX="225.0" layoutY="78.0" prefHeight="40.0" prefWidth="251.0" promptText="Login" style="-fx-background-color: #1c1c1c; -fx-border-color: #9d7a3d; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <TextField fx:id="loginField" layoutX="225.0" layoutY="78.0" prefHeight="40.0" prefWidth="251.0" promptText="Login" style="-fx-background-color: #dedede; -fx-border-color: #9d7a3d; -fx-border-radius: 5; -fx-background-radius: 5;">
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font name="Arial Bold" size="16.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="225.0" layoutY="136.0" prefHeight="40.0" prefWidth="251.0" promptText="Password" style="-fx-background-color: #1c1c1c; -fx-border-color: #9d7a3d; -fx-border-radius: 5; -fx-background-radius: 5;">
+            <PasswordField fx:id="passwordField" layoutX="225.0" layoutY="136.0" prefHeight="40.0" prefWidth="251.0" promptText="Password" style="-fx-background-color: #dedede; -fx-border-color: #9d7a3d; -fx-border-radius: 5; -fx-background-radius: 5;">
                <font>
-                  <Font name="Arial" size="16.0" />
+                  <Font name="Arial Bold" size="16.0" />
                </font>
             </PasswordField>
             <Label layoutX="216.0" layoutY="20.0" text="Authentification">

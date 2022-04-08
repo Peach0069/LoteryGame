@@ -79,6 +79,7 @@ public class HomeController {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
 
     }
@@ -99,6 +100,7 @@ public class HomeController {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.show();
     }
     public void openNewScene(String window) {
@@ -113,6 +115,7 @@ public class HomeController {
         Parent root = loader.getRoot();
         Stage dialog = new Stage();
         dialog.setScene(new Scene(root));
+        dialog.setResizable(false);
         dialog.show();
     }
    }

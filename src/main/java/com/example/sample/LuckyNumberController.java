@@ -138,13 +138,13 @@ public class LuckyNumberController {
         thirdNumber.setImage(image3);
 
         if (x1 == x2 && x1 == x3) {//check if three are equal
-            user.setBalance(user.getBalance() + (bet * 10));
+            user.setBalance(user.getBalance() + (bet * 9));
             this.winnerLabel.setText("BIG WIN!!! x10");
             this.balance.setText(String.valueOf(user.getBalance()));
             saveuser();
         } else if (x1 == x2 || x1 == x3 || x2 == x3) {//check if a pairs are equal
-            user.setBalance(user.getBalance() + (bet * 2));
-            this.winnerLabel.setText("YOU WIN! x2");
+            user.setBalance(user.getBalance() + bet * 5 / 2 );
+            this.winnerLabel.setText("YOU WIN! x2.5");
             this.balance.setText(String.valueOf(user.getBalance()));
             saveuser();
         } else {
@@ -176,6 +176,7 @@ public class LuckyNumberController {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.showAndWait();
     }
 

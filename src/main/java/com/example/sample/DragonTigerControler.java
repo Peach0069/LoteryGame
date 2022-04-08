@@ -68,6 +68,9 @@ public class DragonTigerControler {
     @FXML
     private Label winnerLose;
 
+    @FXML
+    private Label halfLabel;
+
     public DragonTigerControler(User user) {
         this.user = user;
     }
@@ -155,28 +158,34 @@ public class DragonTigerControler {
         DragonImageView.setImage(imageD);
 
         if (yt == yd && xd == xt && player == TIE) {
-            this.winnerLose.setText("YOU WIN x15!");
+            this.winnerLose.setText("EXTRA WIN x15!");
             user.setBalance(user.getBalance() + (bet * 15)); //set win
-        } else if (yt < yd && player == DRAGON) {
+        } else if (yt < yd && player == DRAGON) {//Dragon Win
             this.winnerLose.setText("YOU WIN! x2");
-            user.setBalance(user.getBalance() + (bet * 2)); //set win
-        } else if (yt == yd && player == TIE) {
+            user.setBalance(user.getBalance() + bet ); //set win
+        } else if (yt == yd && player == TIE) {//TIE
             this.winnerLose.setText("YOU WIN! x6");
-            user.setBalance(user.getBalance() + (bet * 6)); //set win
-        } else if (yt > yd && player == TIGER) {
+            user.setBalance(user.getBalance() + bet * 5); //set win
+        } else if (yt > yd && player == TIGER) {//Tiger Win
             this.winnerLose.setText("YOU WIN! x2");
-            user.setBalance(user.getBalance() + (bet * 2)); //set win
-        } else {
+            user.setBalance(user.getBalance() + bet ); //set win
+        } else if(yt == yd && player == DRAGON) { //Refund bet/2 if bet on DRAGON AND IT'S TIE
+            this.winnerLose.setText("Refund half of bet");
+            user.setBalance(user.getBalance() - (bet/2));
+        }else if(yt == yd && player == TIGER) { //Refund bet/2 if bet on TIGER AND IT'S TIE
+            this.halfLabel.setText("Refund half of bet");
+            user.setBalance(user.getBalance() - (bet/2));
+        }else {
             this.winnerLose.setText("YOU LOSE!");
             user.setBalance(user.getBalance() - bet); //set win
         } if (yt < yd){
-            this.winnerLabel.setText("DRAGON WINS! x2");
+            this.winnerLabel.setText("DRAGON WINS!");
         } else if (yt > yd){
-            this.winnerLabel.setText("TIGER WINS! x2");
+            this.winnerLabel.setText("TIGER WINS!");
         } else if (yt == yd){
-            this.winnerLabel.setText("IT'S TIE! x6");
+            this.winnerLabel.setText("IT'S TIE!");
         } else if (yt == yd && xd == xt) {
-            this.winnerLabel.setText("IT'S EXTRA TIE! x15");
+            this.winnerLabel.setText("IT'S EXTRA TIE!");
         }
         this.balance.setText(String.valueOf(user.getBalance()));//show balance in game
         saveuser(); //save data
@@ -186,21 +195,6 @@ public class DragonTigerControler {
     private void saveuser() {
         DataBaseHandler dataBaseHandler = new DataBaseHandler();
         dataBaseHandler.saveuser(user);
-    }
-
-    public void openNewScene(String window) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Parent root = loader.getRoot();
-        Stage dialog = new Stage();
-        dialog.setScene(new Scene(root));
-        dialog.show();
     }
 
     public void openNewScenelobby(String window) {
@@ -218,6 +212,7 @@ public class DragonTigerControler {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.showAndWait();
     }
 

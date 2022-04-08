@@ -11,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -40,6 +37,13 @@ public class Controller {
     @FXML
     private PasswordField passwordField;
 
+    public static void alertError(String error, String mes) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(error);
+        alert.setHeaderText(mes);
+        alert.showAndWait().get();
+    }
+
     @FXML
     void initialize() {
         loginLoginButton.setOnAction(event -> {
@@ -49,7 +53,7 @@ public class Controller {
             if (!loginText.equals("") && !loginPassword.equals("")) {
                 loginUser(loginText, loginPassword);
             } else {
-                System.out.println("Login and Password is empty");
+                alertError("error","Login or/and Password fields is empty");
             }
         });
 
@@ -90,6 +94,7 @@ public class Controller {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
@@ -109,6 +114,7 @@ public class Controller {
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.setResizable(false);
         stage.showAndWait();
     }
 
