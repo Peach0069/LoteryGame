@@ -93,7 +93,10 @@ public class SignUpController {
             new Shake(passwordField).playAnimation();
             new Shake(signUpCountry).playAnimation();
             return false;
-        } else if (user != null) {
+        } else if (userName.length() < 3){
+            alertError("Error","User must need minim 3 letters");
+        }
+        else if (user != null) {
             alertError("Username", "Username is already registered");
         } else if (passCheck(password)) {
             alertSucces("Hi", "Register succesful");
